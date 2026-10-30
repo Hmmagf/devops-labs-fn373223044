@@ -1,19 +1,7 @@
-# Runbook
+## Run with Compose
 
-> Fill in every TODO with exact commands. / Попълнете всяко TODO с точни команди.
-
-## Start locally / Локално стартиране
-
-TODO
-
-## Check that it works / Проверка, че работи
-
-TODO: which address do you open and what should you see? / кой адрес отваряте и какво трябва да видите?
-
-## Run the tests / Тестове
-
-TODO
-
-## When something breaks / Когато нещо се счупи
-
-TODO: the first three things you check. / първите три неща, които проверявате.
+- **`docker compose up -d`**: Builds and starts all services in the background.
+- **`docker compose ps`**: Lists the status of running containers and their exposed ports.
+- **`docker compose logs -f`**: Streams live logs from the services for debugging.
+- **`docker compose down`**: Stops and removes the containers and networks while keeping volumes (data persists).
+- **`docker compose down -v`**: Stops and removes containers, networks, **and** deletes the data volumes (full cleanup, data is lost).
