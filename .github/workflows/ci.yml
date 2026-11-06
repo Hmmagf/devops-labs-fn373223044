@@ -41,3 +41,25 @@ jobs:
 
       - name: Run tests
         run: pytest -v
+
+  build:
+    needs: test
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: docker build -t notes-api:${{ github.sha }} .
+
+      - name: Smoke test container
+        run: |
+          docker run -d --name app -p 8000:8000 notes-api:${{ github.sha }}
+          for i in {1..5}; do
+            curl -f http://localhost:8000/health && exit 0
+            sleep 1
+          done
+          docker logs app
+          exit 1
